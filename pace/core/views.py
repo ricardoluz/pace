@@ -10,7 +10,7 @@ from rest_framework import status
 from pace.core.models import Activity
 from pace.core.serializers import (
     ActivitySerializer,
-    ActivitySerializerPost,
+    # ActivitySerializerPost,
 )
 
 
@@ -25,7 +25,7 @@ class ActivityList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = ActivitySerializerPost(data=request.data)
+        serializer = ActivitySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -50,7 +50,7 @@ class ActivityDetail(APIView):
 
     def put(self, request, pk, format=None):
         activity = self.get_object(pk)
-        serializer = ActivitySerializerPost(activity, data=request.data)
+        serializer = ActivitySerializer(activity, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
