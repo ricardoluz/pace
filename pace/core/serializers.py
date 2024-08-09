@@ -15,6 +15,7 @@ class ActivitySerializer(serializers.ModelSerializer):
             "minutes",
             "seconds",
             "total_minutes",
+            "owner",
         ]
 
     total_minutes = serializers.FloatField(read_only=True)
