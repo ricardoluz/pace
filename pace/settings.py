@@ -23,12 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY", "INSECURE")
-SECRET_KEY_JWT = "hsdasd8sdadkasd-sadasdsasd-erwerewrwe-wqwzzzz"
+SECRET_KEY_JWT = os.environ.get("SECRET_KEY_JWT", "INSECURE")
+# SECRET_KEY_JWT = "hsdasd8sdadkasd-sadasdsasd-erwerewrwe-wqwzzzz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.15.80"]
 
 
 # Application definition
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #
     "rest_framework",
-    "rest_framework_simplejwt",
+    # "rest_framework_simplejwt",
+    "rest_framework.authtoken",
     #
     "pace.core",
 ]
@@ -135,15 +137,13 @@ REST_FRAMEWORK = {
         "rest_framework.pagination.LimitOffsetPagination",
     ],
     "PAGE_SIZE": 10,
-    # "DEFAULT_AUTHENTICATION_CLASSES": (
-    #     "rest_framework_simplejwt.authentication.JWTAuthentication",
-    # ),
     "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ),
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        # "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ),
 }
 
