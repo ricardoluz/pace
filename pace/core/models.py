@@ -8,7 +8,6 @@ class UserSystem(models.Model):
     name = models.CharField(max_length=50, null=False)
     last_name = models.CharField(max_length=150, blank=True)
     nick_name = models.CharField(max_length=50, blank=True)
-    # password = models.TextField(editable=False)
 
     def __str__(self):
         return self.last_name

@@ -30,8 +30,8 @@ class ActivitySerializer(serializers.ModelSerializer):
 class UserSystemSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(
-        # max_length=132,
-        # required=True,
+        allow_blank=False,
+        max_length=132,
         read_only=True,
     )
 
@@ -47,7 +47,6 @@ class UserSystemSerializer(serializers.ModelSerializer):
             "password",
         )
         read_only_fields = ["password"]
-        # extra_kwargs = {"password": {"write_only": True}}
 
     def validate(self, data):
         if len(data["last_name"]) < 0:
